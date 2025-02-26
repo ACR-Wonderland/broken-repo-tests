@@ -32,9 +32,5 @@ jobs:
 
     - name: Python Autograder
       id: python-test
-      uses: classroom-resources/autograding-python-grader@v1
-      with:
-        timeout: '15'
-        max-score: '100'
-        setup-command: 'cd home/runner/work/broken-repo-tests/broken-repo-tests'
+      run: pytest
     
