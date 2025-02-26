@@ -11,12 +11,6 @@ jobs:
     - name: Checkout Student Submission
       uses: actions/checkout@v4
 
-    - name: Inject Test Suite
-      run: |
-        git clone https://github.com/YOUR-ORG/autograder-tests.git temp_tests
-        cp -r temp_tests/tests ./tests
-        rm -rf temp_tests
-
     - name: Install Dependencies
       run: pip install GitPython pytest chardet
 
