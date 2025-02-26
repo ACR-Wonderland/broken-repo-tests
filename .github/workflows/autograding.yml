@@ -25,7 +25,7 @@ jobs:
       run: pip install GitPython pytest chardet
 
     - name: Run Pytest Autograder
-      run: python tests/autograding.py
+      run: python tests/autograder.py
 
     - name: Output Test Results
       run: cat pytest-results.txt
