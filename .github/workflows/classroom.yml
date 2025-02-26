@@ -11,6 +11,12 @@ jobs:
       uses: actions/checkout@v4
       with:
         fetch-depth: 0
+    - name: Debug Repository Structure
+      run: |
+        echo "Current Directory:"
+        pwd
+        echo "Repository Contents:"
+        ls -R /home/runner/work/
 
     - name: Install Dependencies Manually
       run: |
@@ -30,5 +36,5 @@ jobs:
       with:
         timeout: '15'
         max-score: '100'
-        setup-command: 'cd /home/runner/work/broken-repo-tests/broken-repo-tests'
+        setup-command: 'cd home/runner/work/broken-repo-tests/broken-repo-tests'
     
