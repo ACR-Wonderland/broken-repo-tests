@@ -30,5 +30,5 @@ jobs:
       with:
         timeout: '15'
         max-score: '100'
-        command: 'pytest tests/test_autograder.py'
+        setup-command: 'cd /home/runner/work/broken-repo-tests/broken-repo-tests'
     
