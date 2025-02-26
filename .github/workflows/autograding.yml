@@ -1,0 +1,27 @@
+name: GitHub Classroom Autograder
+
+on:
+  push  # Runs on each student submission
+
+jobs:
+  autograde:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Student Submission
+      uses: actions/checkout@v4
+
+    - name: Inject Test Suite
+      run: |
+        git clone https://github.com/YOUR-ORG/autograder-tests.git temp_tests
+        cp -r temp_tests/tests ./tests
+        rm -rf temp_tests
+
+    - name: Install Dependencies
+      run: pip install GitPython pytest chardet
+
+    - name: Run Pytest Autograder
+      run: pytest tests/test_autograder.py --tb=short --maxfail=1 | tee pytest-results.txt
+
+    - name: Output Test Results
+      run: cat pytest-results.txt
