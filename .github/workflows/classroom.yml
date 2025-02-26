@@ -1,0 +1,28 @@
+name: Autograding Tests
+
+on:
+  push  # Runs on every push to evaluate student submissions
+
+jobs:
+  run-tests:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Student Submission
+      uses: actions/checkout@v4
+
+    - name: Install Dependencies Manually
+      run: |
+        pip install GitPython pytest chardet  # Installing required packages individually
+
+    - name: Python Autograder
+      id: python-test
+      uses: classroom-resources/autograding-python-grader@v1
+      with:
+        timeout: '15'
+        max-score: '100'
+        #command: 'pytest tests/test_autograder.py'
+    
+    - name: Autograding Reporter
+      uses: classroom-resources/autograding-reporter@v1
+      with:
+        runners: python-test
