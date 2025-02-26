@@ -3,15 +3,16 @@ import git
 import re
 import chardet
 
-def find_repo_dir():
-    """Find the directory where the .git folder is located (i.e., the student's repo root)."""
-    current_dir = os.getcwd()  # Get current working directory
-    while current_dir != "/" and not os.path.isdir(os.path.join(current_dir, ".git")):
-        current_dir = os.path.dirname(current_dir)  # Move up one level
-    return current_dir if os.path.isdir(os.path.join(current_dir, ".git")) else None
+def get_repo_dir():
+    """Returns the GitHub Actions working directory where the repository is cloned."""
+    repo_dir = os.getenv("GITHUB_WORKSPACE", os.getcwd())  # Use GitHub Actions workspace or fallback
+    if not os.path.isdir(os.path.join(repo_dir, ".git")):
+        raise Exception("❌ Error: No Git repository found in expected directory.")
+    return repo_dir
 
-# Locate the repository directory dynamically
-REPO_DIR = find_repo_dir()
+# Locate the repository inside GitHub Actions workspace
+REPO_DIR = get_repo_dir()
+
 if not REPO_DIR:
     raise Exception("❌ Error: No Git repository found in the current directory or its parents.")
 
