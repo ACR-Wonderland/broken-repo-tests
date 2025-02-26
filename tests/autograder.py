@@ -62,7 +62,8 @@ def check_gitignore():
 
 if __name__ == "__main__":
     repo = get_repo()
-    print(get_repo.__name__)
+    for x in repo.branches:
+        print(x)
     print(is_branch_merged(repo,"feature-a"))
     print(is_branch_merged(repo,"feature-b"))
     print(is_branch_merged(repo,"feature-c"))
