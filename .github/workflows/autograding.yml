@@ -1,19 +1,31 @@
 name: GitHub Classroom Autograder
 
 on:
-  push  # Runs on each student submission
+  push  # Runs when a student submits their work
 
 jobs:
   autograde:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout Student Submission
+    - name: Checkout Student Submission (All Branches)
       uses: actions/checkout@v4
+      with:
+        fetch-depth: 0  # Fetch all branches
+
+    - name: Activate All Branches
+      run: |
+        git branch -a  # List all available branches for debugging
+        git checkout feature-a || echo "feature-a not found"
+        git checkout feature-b || echo "feature-b not found"
+        git checkout feature-c || echo "feature-c not found"
+        git checkout main
 
     - name: Install Dependencies
       run: pip install GitPython pytest chardet
 
     - name: Run Pytest Autograder
-      run: python tests/autograder.py
+      run: python tests/autograding.yml
 
+    - name: Output Test Results
+      run: cat pytest-results.txt
