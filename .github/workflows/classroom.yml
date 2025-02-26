@@ -22,7 +22,3 @@ jobs:
         max-score: '100'
         #command: 'pytest tests/test_autograder.py'
     
-    - name: Autograding Reporter
-      uses: classroom-resources/autograding-reporter@v1
-      with:
-        runners: python-test
