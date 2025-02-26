@@ -13,6 +13,14 @@ jobs:
     - name: Install Dependencies Manually
       run: |
         pip install GitPython pytest chardet  # Installing required packages individually
+    
+    - name: Activate All Branches
+      run: |
+        git branch -a  # List all available branches for debugging
+        git checkout feature-a || echo "feature-a not found"
+        git checkout feature-b || echo "feature-b not found"
+        git checkout feature-c || echo "feature-c not found"
+        git checkout main
 
     - name: Python Autograder
       id: python-test
