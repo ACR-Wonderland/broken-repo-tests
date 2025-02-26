@@ -11,7 +11,7 @@ def get_repo_dir():
     return repo_dir
 
 # Locate the repository inside GitHub Actions workspace
-REPO_DIR = get_repo_dir()
+REPO_DIR = "/home/runner/work/broken-repo-tests"
 
 if not REPO_DIR:
     raise Exception("❌ Error: No Git repository found in the current directory or its parents.")
